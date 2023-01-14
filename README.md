@@ -1,18 +1,18 @@
 #Setting up the developement enviorment and pre-requisite packages:
-  node -v
-  npm -v
-  npx create-react-app .
-  npm i bootstrap
-  npm i font-awesome
-  npm redux react-redux
-  npm i react-redux
-  npm i redux react-redux
-  npm i react-router-dom
-  npm start
+    node -v
+    npm -v
+    npx create-react-app .
+    npm i bootstrap
+    npm i font-awesome
+    npm redux react-redux
+    npm i react-redux
+    npm i redux react-redux
+    npm i react-router-dom
+    npm start
 
 ## src > components
 ## see the console for API worked on this project only for few hour.
-### Code for categories which has some filter error(filter is calling objects), couldn't fix it coz have worked on 2-3 projects only, & did not face anything like this befor:
+### Code for categories which has some filter error(filter is calling objects), couldn't fix it coz have worked on 2-3 projects only, & did not face anything like this before:
   import React, { useState, useRef } from "react";
 
 const Categories = () => {
