@@ -1,25 +1,46 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./components/sidebar/Sidebar.css";
+import "./components/navbar/Navbar.css";
+// import "./components/SearchBar/SearchBar.css";
 
-function App() {
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+
+// components
+import Navbar from "./components/navbar/Navbar";
+import Sidebar from "./components/sidebar/Sidebar";
+import Categories from "./components/categories/Categories";
+// import SearchBar from "./components/SearchBar/SearchBar";
+
+// Pages
+import Home from "./pages/Home.jsx";
+import Orders from "./pages/Orders.jsx";
+import Notifications from "./pages/Notifications.jsx";
+import HelpAndSupport from "./pages/HelpAndSupport.jsx";
+import Settings from "./pages/Settings.jsx";
+
+const App = () => {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+
+        <Sidebar>
+          <Routes>
+          <Route path="/" element={<Home />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/orders" element={<Orders />} />
+            <Route path="/notifications" element={<Notifications />} />
+            <Route path="/helpAndSupport" element={<HelpAndSupport />} />
+            <Route path="/settings" element={<Settings />} />
+          </Routes>
+
+          <Navbar />
+          <Categories />
+          {/* <SearchBar/> */}
+        </Sidebar>
+      </BrowserRouter>
+    </>
   );
-}
+};
 
 export default App;

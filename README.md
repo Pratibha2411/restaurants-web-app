@@ -1,70 +1,103 @@
-# Getting Started with Create React App
+#Setting up the developement enviorment and pre-requisite packages:
+  node -v
+  npm -v
+  npx create-react-app .
+  npm i bootstrap
+  npm i font-awesome
+  npm redux react-redux
+  npm i react-redux
+  npm i redux react-redux
+  npm i react-router-dom
+  npm start
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## src > components
+## see the console for API worked on this project only for few hour.
+### Code for categories which has some filter error(filter is calling objects), couldn't fix it coz have worked on 2-3 projects only, & did not face anything like this befor:
+  import React, { useState, useRef } from "react";
 
-## Available Scripts
+const Categories = () => {
+  const [data, setData] = useState([]);
+  const [filter, setFilter] = useState(data);
 
-In the project directory, you can run:
+  const [loading, setLoading] = useState(false);
+  let componentMounted = true;
 
-### `npm start`
+  useRef(() => {
+    const getCategories = async () => {
+      setLoading(true);
+      const response = await fetch(
+        "https://api.sheety.co/bdcbafbc1f4197dda178b9e69f6ccee9/techAlchemyWebTest1/allRestaurants"
+      );
+      if (componentMounted) {
+        setData(await response.clone().json());
+        setFilter(await response.json());
+        setLoading(false);
+        console.log(filter);
+      }
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+      return () => {
+        componentMounted = false;
+      };
+    };
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+    getCategories();
+  }, []);
 
-### `npm test`
+  const Loading = () => {
+    return <>Loading.....</>;
+  };
+  const ShowCategories = () => {
+    return (
+      <>
+        <div className="buttons d-flex justify-content-center mb-5 pb-5">
+          <button className="btn btn-outline-dark me-2">Baked</button>
+          <button className="btn btn-outline-dark me-2">Sweet</button>
+          <button className="btn btn-outline-dark me-2">Hot Dish</button>
+          <button className="btn btn-outline-dark me-2">Fast Food</button>
+          <button className="btn btn-outline-dark me-2">Salads</button>
+        </div>
+        {
+        filter.map((allRestaurants) => {
+          return (
+            <>
+              <div className="col-md-3">
+                <div class="card h-100 text-center p-4" key={allRestaurants.id}>
+                  <img src={allRestaurants.restaurantImage} class="card-img-top" alt={allRestaurants.restaurantName} />
+                  <div class="card-body">
+                    <h5 class="card-title">{allRestaurants.restaurantName}</h5>
+                    <p class="card-text">
+                      ${allRestaurants.restaurantDescription}
+                    </p>
+                    <a href="Restaurants" class="btn btn-primary">
+                      Go somewhere
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </>
+          );
+        })}
+      </>
+    );
+  };
+  return (
+    <>
+      <div>
+        <div className="container my-4 py-4">
+          <div className="row">
+            <div className="col-12 mb-4">
+              <h6 className="display-6 fw-bolder">
+                Category
+              </h6>
+            </div>
+          </div>
+          <div className="row">
+            {loading ? <Loading /> : <ShowCategories />}
+          </div>
+        </div>
+      </div>
+    </>
+  );
+};
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+export default Categories;

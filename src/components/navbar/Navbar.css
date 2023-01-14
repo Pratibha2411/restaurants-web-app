@@ -1,0 +1,26 @@
+.filterRestro{
+    /* position: absolute; */
+    background-color: #503E9D;
+    color: #E5E5E5;
+    border-radius: 10px;
+    padding: 8px;
+
+}
+.cartRestro{
+    background-color: #FB6D3A;
+    color: #E5E5E5;
+    border-radius: 10px;
+    padding: 8px;
+}
+.restroIcon{
+    position: sticky;
+    background-color: #503E9D;
+    color: #E5E5E5;
+    border-radius: 10px;
+    padding: 4px;
+    left: 527px;
+}
+.restroTag{
+    position: sticky;
+    left: 563px;
+}
