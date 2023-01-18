@@ -12,7 +12,7 @@
 
 ## src > components
 ## see the console for API worked on this project only for few hour.
-### Code for categories which has some filter error(filter is calling objects), couldn't fix it coz have worked on 2-3 projects only, & did not face anything like this before:
+### Code for categories which has some filter error(filter is calling objects)
   import React, { useState, useRef } from "react";
 
 const Categories = () => {
